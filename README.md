@@ -8,7 +8,8 @@ This is a short tutorial on how to create an Ubuntu server instance using the Am
 
 ### Creating an Ubuntu server instance  
 **1.** Sign into Amazon AWS account
-![Sign in to amazon AWS account.][signin]
+![Sign in to amazon AWS account.][1]
+
 **2.** Under the **All Services** accordion, select the **EC2** link, listed under the **Compute** header.
 
 **3.** Click the **Launch Instance** button, located under the **Create Instance** header.
@@ -66,4 +67,4 @@ sudo service mongodb restart
 
 **6.** Click the **Connect** button to connect to the MongoDB.
 
-[signin]: foo.png
+[1]: https://github.com/zanayr/EC2-MongoDB-Tutorial/blob/master/images/1.png
