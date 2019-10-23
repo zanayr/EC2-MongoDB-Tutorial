@@ -7,17 +7,16 @@ This is a short tutorial on how to create an Ubuntu server instance using the Am
 3. [Creating a MongoDB database](#creating-a-mongodb-database)
 
 ### Creating an Ubuntu server instance  
-**1.** Sign into Amazon AWS account [here.](https://aws.amazon.com/)  
-![Sign in to amazon AWS account.][1]
+**1.** Sign into Amazon AWS account [here.](https://aws.amazon.com/)
 
-**2.** Under the **All Services** accordion, select the **EC2** link, listed under the **Compute** header.
-![Click on EC2 link.][2]
+**2.** Under the **All Services** accordion, select the **EC2** link, listed under the **Compute** header.  
+![Click on EC2 link.][1]
 
 **3.** Click the **Launch Instance** button, located under the **Create Instance** header.
 
 **4.** Click the **Select** button of the **Ubuntu Server** list item.
 
-**5.** Click the **Review and Launch** button in the bottom right corner, making sure that the *Free Tier* option is selected.
+**5.** Click the **Review and Launch** button in the bottom right corner, making sure that the *Free Tier* option is selected. The click the **Launch** button.
 
 **6.** A modal will appear, select the *Create a New Key Pair* option from the first drop down menu. Name the key pair, for reference only, and then download the key pair. Saving the .pem file somewhere *accessible* and *memorable.*
 
@@ -33,19 +32,22 @@ Entering `yes` when promted `The authenticity of host...`, and now terminal is c
 ubuntu@<server-ip>:~$
 ```
 
+Now the Ubuntu server is up and running.
+
 
 ### Securing your Ubuntu server  
-**1.** Navigate to your Ubuntu server instance, and click the **launch-wizard-1** link under the **Security groups** header of the **Description** tab.
+**1.** Navigate to your Ubuntu server instance, and click the **launch-wizard** link under the **Security groups** header of the **Description** tab.  
+![Click on launch-wizard link.][2]  
 
 **2.** Under the **Inbound** tab, click the **Edit** button.
 
 **3.** Click the **Add Rule** button, entering in a port range of 27017, the default port for MongoDB. Select **My IP** option in the **Source** dropdown menu. Make sure that your IP address appears in the following text box. You can check your IP address by googling "what is my ip".
 
-Your new rule should appear under the **Inbound** tab.
+Your new rule should appear under the **Inbound** tab and your server is now protected behind a firewall.
 
 
 ### Creating a MongoDB database  
-**1.** After connecting terminal to the Ubuntu server instance, see **Step 7** of **Creating an Ubuntu server instance**, the required node packages will need to be installed before creating a MongoDB database. Enter the following commands, sequentially, entering `y` or `yes` to all prompts, allowing each to complete.
+**1.** After connecting terminal to the Ubuntu server instance, see **Step 7** of **Creating an Ubuntu server instance**, required node packages will need to be installed before creating a MongoDB database. Enter the following commands, sequentially, entering `y` or `yes` to all prompts, allowing each to complete.
 ```
 sudo apt update
 
@@ -55,7 +57,8 @@ sudo npm install -g n forever
 
 sudo n latest
 ```
-**2.** Enter the following command `sudo vi /etc/mongodb.conf` and navigate the terminal cursor to line 11, changing `bind_ip = 127.0.0.1` to `bind_ip = 0.0.0.0`. To be able to edit this file, hold the i key to insert, to save press the escape key and type `:wq` and enter. More can be found [here.](https://www.howtogeek.com/102468/a-beginners-guide-to-editing-text-files-with-vi/)
+**2.** Enter the following command `sudo vi /etc/mongodb.conf` and navigate the terminal cursor to line 11, changing `bind_ip = 127.0.0.1` to `bind_ip = 0.0.0.0`. To be able to edit this file, hold the i key to insert, to save press the escape key and type `:wq` and enter. More can be found [here.](https://www.howtogeek.com/102468/a-beginners-guide-to-editing-text-files-with-vi/)  
+![Update the bound ip address to all.][3]
 
 **3.** Finally enter the following command. It may freeze the terminal while it loads.
 ```
@@ -70,3 +73,4 @@ sudo service mongodb restart
 
 [1]: https://github.com/zanayr/EC2-MongoDB-Tutorial/blob/master/images/1.png
 [2]: https://github.com/zanayr/EC2-MongoDB-Tutorial/blob/master/images/2.png
+[3]: https://github.com/zanayr/EC2-MongoDB-Tutorial/blob/master/images/3.png
